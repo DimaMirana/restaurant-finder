@@ -1,37 +1,33 @@
-import React, { useEffect, Fragment } from 'react';
+import React, {  Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import 'antd/dist/antd.min.css';
-import { Card } from 'antd';
-
-import { fetchRestaurants } from '../../features/restaurantSlice';
-import NoPage from '../../pages/NoPage/NoPage.component';
-import SpinnerComponent from '../Spinner/Spinner.component';
+import { Card, Col, Row } from 'antd';
+import { setSlectedRestaurant } from '../../features/restaurantSlice';
 
 const AllRestaurantsComponent = () => {
     const restaurants = useSelector(state => state.restaurants);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchRestaurants())
-    }, [dispatch])
     
-    const styleObject = {
-        width: '25%',
-        textAlign: 'center',
-    };
+    const onClickHandler = (value) => {
+        dispatch(setSlectedRestaurant(value));
+    }
     
     return <Fragment>
-        {restaurants.loading && <SpinnerComponent/>}
-        {!restaurants.loading && restaurants.error ? <NoPage/> : null}
         {!restaurants.loading && restaurants.restaurantData.length ? (
-            <Card title="List Of Restaurant">
-                {restaurants.restaurantData.map((item, id) => (
-                    <Card.Grid 
-                        key={id}
-                        onClick={()=>console.log(item)} 
-                        style={styleObject}>{item.name}</Card.Grid>
-                ))}
-            </Card>
+            <div className="site-card-wrapper">
+                <Row gutter={16} style={{margin:0,padding:0}}>
+                        {restaurants.restaurantData.map((item, id) => (
+                            <Col style={{ margin: 0, padding: '8px' }} key={item.id} span={12}>
+                                <Card
+                                    style={{ margin: 0, padding: '8px' }}
+                                    key={id}
+                                    bordered={true}
+                                    title={item.name}
+                                    onClick={() => onClickHandler(item)}/>
+                            </Col>
+                        ))}
+                </Row>
+            </div>
         ) : null}
     </Fragment>;
 }

@@ -1,17 +1,39 @@
-import React, { Fragment } from 'react';
+import React,{ useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRestaurants, setCenter, setSlectedRestaurant } from '../../features/restaurantSlice';
+import { getCurrentGeoLocation } from '../../common/utils';
 import AllRestaurantsComponent from '../../components/AllRestaurants/AllRestaurants.component';
-import MapComponent from '../Map/Map.component';
+import SpinnerComponent from '../../components/Spinner/Spinner.component';
+import MapPage from '../Map/Map.component';
+import NoPage from '../NoPage/NoPage.component';
 
 const HomePage = () => {
     
-    return <Fragment style={{ backgroundColor:"#F7FAFF"}}>
-            <div style={{width:"40%", overflowY: 'auto',}}>
+    const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
+    
+    const restaurants = useSelector(state => state.restaurants);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        getCurrentGeoLocation(setLatLng);
+        if (latLng.lat!==0){
+            dispatch(fetchRestaurants(latLng));
+            dispatch(setCenter(latLng));
+            dispatch(setSlectedRestaurant(null));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, latLng.lat])
+    
+    return <div style={{display:'flex', backgroundColor:"#F7FAFF"}}>
+            {restaurants.loading && <SpinnerComponent/>}
+            {!restaurants.loading && restaurants.error ? <NoPage/> : null}
+            <div style={{width:"50%", overflowY: 'auto',}}>
                 <AllRestaurantsComponent/>
             </div>
-            <div style={{width:"60%"}}>
-                <MapComponent/>
+            <div style={{width:"50%"}}>
+                <MapPage/>
             </div>
-        </Fragment>;
+        </div>;
 }
 
 export default HomePage;

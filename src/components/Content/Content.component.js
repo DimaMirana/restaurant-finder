@@ -10,7 +10,9 @@ const ContentComponent = () => {
         backgroundColor: "#F7FAFF", 
         maxHeight: '64vh',
         display: "flex", 
-        flexDirection: "row",}
+        flexDirection: "row"
+    }
+    
     return <Content 
         style={styleObject}>
         <Outlet />

@@ -7,14 +7,15 @@ const initialState = {
     restaurantData: [],
     restaurantCategory: [],
     error: '',
-    selectedRestaurant:{},
+    selectedRestaurant:null,
     filteredRestaurants: [],
+    center:{},
 }
 
-export const fetchRestaurants = createAsyncThunk('GET_RESTAURANT_DATA', async () => {
+export const fetchRestaurants = createAsyncThunk('GET_RESTAURANT_DATA', async (latLng) => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore/?"
     const params = {
-        ll: "23.781699,90.400519",
+        ll: `${latLng.lat.length === 0 ? 23.8125056 : latLng.lat},${latLng.lng.length === 0 ? 90.3643136 : latLng.lng}`,
         venuePhotos: 1,
         section: "food",
         client_id: "YZQZP1Q2HEJWMD5ZVBMIQD3VSZC1W4BQCCQTVFEPJWNHL0RK",
@@ -31,9 +32,13 @@ const restaurantSlice = createSlice({
     name: 'restaurants',
     initialState,
     reducers:{
+        setCenter:(state, action)=>{
+            state.center = action.payload;
+        },
         setSlectedRestaurant:(state, action)=>{
-            console.log('setSlectedRestaurant', state, action)
-        }
+            state.selectedRestaurant= action.payload;
+        },
+        
     },extraReducers: builder => {
         builder.addCase(fetchRestaurants.pending, state => {
             state.loading = true;
@@ -51,5 +56,7 @@ const restaurantSlice = createSlice({
         })
     }
 })
+
+export const { setSlectedRestaurant, setCenter } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;
