@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{FC} from 'react';
 
-const NoPage = () => {
+const NoPage: FC = () => {
     return <div>SORRY, SOMETHING WENT WRONG</div>;
 }
 

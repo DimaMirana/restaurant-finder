@@ -7,7 +7,7 @@ import HeaderComponent from '../../components/Header/Header.component';
 import ContentComponent from '../../components/Content/Content.component';
 
 
-const UILayout = () => {
+const UILayout: React.FC = () => {
     const styleObject = {
         minHeight: "100vh",
         padding: "25px 25px",

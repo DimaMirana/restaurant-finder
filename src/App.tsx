@@ -4,7 +4,7 @@ import NoPage from './pages/NoPage/NoPage.component';
 import HomePage from './pages/Home/Home.component';
 import UILayout from './pages/UILayout/UILayout.component';
 
-function App() {
+const App: React.FC=()=> {
   return (
     <BrowserRouter>
       <Routes>

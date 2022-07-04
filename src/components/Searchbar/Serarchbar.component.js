@@ -43,7 +43,8 @@ const SerarchbarComponent = () => {
                     <Select
                         style={{width: "inherit"}}
                         defaultValue={searchCategory} 
-                        onSelect={e=>{setSearchCategory(e)}}>
+                        allowClear
+                        onChange={e=>{setSearchCategory(e)}}>
                         {options.map((item)=><Option key={item} value={item}>{item}</Option>)}
                     </Select>
                 </Col>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{FC} from 'react';
 import 'antd/dist/antd.min.css';
 import { Space, Spin } from 'antd';
 
-const SpinnerComponent = () => {
-    return <Space size="medium">
+const SpinnerComponent: FC = () => {
+    return <Space size="middle">
         <Spin size="large"/>
     </Space>;
 }

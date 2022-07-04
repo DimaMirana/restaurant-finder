@@ -1,14 +1,14 @@
 import "antd/dist/antd.min.css";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, FC } from "react";
 import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu } from "antd";
 import { HomeOutlined, EyeOutlined, RetweetOutlined } from '@ant-design/icons';
 
 
-const Sidebar = () => {
+const Sidebar: FC = () => {
     const { Sider } = Layout;
     const [collapse, setCollapse] = useState(false);
-    const onCollapse = (collapse) => {
+    const onCollapse = (collapse: boolean | ((prevState: boolean) => boolean)) => {
         setCollapse(collapse);
     }
 

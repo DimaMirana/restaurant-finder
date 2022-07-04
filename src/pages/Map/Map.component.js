@@ -19,6 +19,7 @@ const MapPage = () => {
     };
 
     const { isLoaded, loadError } = useLoadScript({
+        // @ts-ignore
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });

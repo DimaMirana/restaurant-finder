@@ -1,7 +1,18 @@
-import React from "react";
+import React,{FC} from "react";
 import { Marker } from "@react-google-maps/api";
 
-const MarkerComponent = ({value,onClickHandler})=>{
+type AppProps = {
+  value: {
+    id:number,
+    location:{
+        lat:number,
+        lng:number
+    }
+  };
+  onClickHandler: Function;
+};
+
+const MarkerComponent: FC<AppProps> = ({value,onClickHandler})=>{
     return <Marker
         key={value.id}
         position={{

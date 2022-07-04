@@ -1,9 +1,21 @@
-import React from "react";
+import React,{FC} from "react";
 import {InfoWindow} from "@react-google-maps/api";
 import 'antd/dist/antd.min.css';
 import { Card } from 'antd';
 
-const MapInfoWindowComponent = ({ showInfoCard, onClickHandler }) => {
+type AppProps = {
+    showInfoCard: {
+        name: string,
+        location: {
+            lat: number,
+            lng: number,
+            address: string,
+        }
+    };
+    onClickHandler: Function;
+};
+
+const MapInfoWindowComponent:FC<AppProps> = ({ showInfoCard, onClickHandler }) => {
     
     
     return (

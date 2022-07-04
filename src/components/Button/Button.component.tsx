@@ -1,8 +1,14 @@
-import React from 'react';
+import React,{FC} from 'react';
 import 'antd/dist/antd.min.css';
 import { Button } from 'antd';
 
-const ButtonComponent = ({text,style, onClickHandler}) => {
+type AppProps = {
+    text:string,
+    style:any,
+    onClickHandler: Function;
+};
+
+const ButtonComponent: FC<AppProps> = ({text,style, onClickHandler}) => {
     return <Button 
         style={style} 
         type="primary"
