@@ -13,10 +13,10 @@ const AllRestaurantsComponent = () => {
     }
     
     return <Fragment>
-        {!restaurants.loading && restaurants.restaurantData.length ? (
+        {!restaurants.loading && restaurants.filteredRestaurants.length ? (
             <div className="site-card-wrapper">
                 <Row gutter={16} style={{margin:0,padding:0}}>
-                        {restaurants.restaurantData.map((item, id) => (
+                        {restaurants.filteredRestaurants.map((item, id) => (
                             <Col style={{ margin: 0, padding: '8px' }} key={item.id} span={12}>
                                 <Card
                                     style={{ margin: 0, padding: '8px' }}

@@ -5,7 +5,6 @@ import { formatResponse } from "../common/utils";
 const initialState = {
     loading: false,
     restaurantData: [],
-    restaurantCategory: [],
     error: '',
     selectedRestaurant:null,
     filteredRestaurants: [],
@@ -24,8 +23,8 @@ export const fetchRestaurants = createAsyncThunk('GET_RESTAURANT_DATA', async (l
         radius: "3000",
     }
     const response = await axios.get(endPoint + new URLSearchParams(params));
-    const [restaurant, categories] = formatResponse(response);
-    return [restaurant, categories];
+    const restaurant = formatResponse(response);
+    return restaurant;
 })
 
 const restaurantSlice = createSlice({
@@ -38,25 +37,28 @@ const restaurantSlice = createSlice({
         setSlectedRestaurant:(state, action)=>{
             state.selectedRestaurant= action.payload;
         },
-        
+        setFilterRestaurant:(state, action)=>{
+            state.filteredRestaurants = action.payload;
+        }
     },extraReducers: builder => {
         builder.addCase(fetchRestaurants.pending, state => {
             state.loading = true;
         })
         builder.addCase(fetchRestaurants.fulfilled, (state, action) => {
             state.loading = false;
-            state.restaurantData = action.payload[0];
-            state.restaurantCategory = action.payload[1];
+            state.restaurantData = action.payload;
+            state.filteredRestaurants = action.payload;
             state.error = '';
         })
         builder.addCase(fetchRestaurants.rejected, (state, action) => {
             state.loading = false;
             state.restaurantData = [];
+            state.filteredRestaurants = [];
             state.error = action.error.message;
         })
     }
 })
 
-export const { setSlectedRestaurant, setCenter } = restaurantSlice.actions;
+export const { setSlectedRestaurant, setCenter, setFilterRestaurant } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;

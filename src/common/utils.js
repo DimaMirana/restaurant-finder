@@ -4,16 +4,27 @@
  * @returns {*} state storable data
  */
 export const formatResponse = (response) => {
-    let searchKey = [];
     let restaurant = [];
     let data = response.data.response.groups[0].items;
     data.forEach((item) => {
         restaurant.push(item.venue);
-        let type = item.venue.categories[0].shortName;
+    });
+    return restaurant;
+}
+
+/**
+ * GET THE CATEGORY OF THE FETCHED FOOD ITEM
+ * @param {*} DATA 
+ * @returns {*} CATEGORY ARRAY
+ */
+export const getFilterKey = (data) => {
+    let searchKey = [];
+    data.forEach((item) => {
+        let type = item.categories[0].shortName;
         searchKey.push(type);
     })
     const filterKey = [...new Set(searchKey)];
-    return [restaurant, filterKey];
+    return  filterKey;
 }
 
 /**
