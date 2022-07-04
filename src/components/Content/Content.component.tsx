@@ -7,13 +7,14 @@ const ContentComponent:FC = () => {
     const { Content } = Layout;
     const styleObject = {
         'margin': '24px 16px 0', 
-        'background-color': "#F7FAFF", 
-        'max-height': '64vh',
+        'backgroundColor': "#F7FAFF", 
+        'maxHeight': '64vh',
         'display': "flex", 
-        'flex-direction': "row"
+        'flexDirection': "row"
     }
     
-    return <Content 
+    return <Content
+        //@ts-ignore
         style={styleObject}>
         <Outlet />
     </Content>;

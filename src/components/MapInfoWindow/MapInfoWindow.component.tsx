@@ -10,7 +10,10 @@ type AppProps = {
             lat: number,
             lng: number,
             address: string,
-        }
+        },
+        address: string; 
+        city: string; 
+        country: string;
     };
     onClickHandler: Function;
 };

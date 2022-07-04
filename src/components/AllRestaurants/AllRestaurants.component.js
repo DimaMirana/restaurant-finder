@@ -6,6 +6,8 @@ import { setSlectedRestaurant } from '../../features/restaurantSlice';
 
 const AllRestaurantsComponent = () => {
     const restaurants = useSelector(state => state.restaurants);
+    console.log('Restaurants',restaurants);
+    
     const dispatch = useDispatch();
     
     const onClickHandler = (value) => {

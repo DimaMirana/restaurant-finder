@@ -1,14 +1,9 @@
 import React,{FC} from "react";
 import { Marker } from "@react-google-maps/api";
+import { Info } from "../../common/types";
 
 type AppProps = {
-  value: {
-    id:number,
-    location:{
-        lat:number,
-        lng:number
-    }
-  };
+  value: Info;
   onClickHandler: Function;
 };
 

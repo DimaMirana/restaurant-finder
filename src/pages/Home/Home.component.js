@@ -1,4 +1,4 @@
-import React,{ useEffect, useState} from 'react';
+import React,{ useEffect, useState, FC} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRestaurants, setCenter, setSlectedRestaurant } from '../../features/restaurantSlice';
 import { getCurrentGeoLocation } from '../../common/utils';
@@ -8,12 +8,17 @@ import MapPage from '../Map/Map.component';
 import NoPage from '../NoPage/NoPage.component';
 import SerarchbarComponent from '../../components/Searchbar/Serarchbar.component';
 
+
 const HomePage = () => {
     
-    const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
+    const [latLng, setLatLng] = useState({ lat: 0, lng: 0 })
+    
     
     const restaurants = useSelector(state => state.restaurants);
     const dispatch = useDispatch();
+    useEffect(()=>{
+        getCurrentGeoLocation(setLatLng);
+    },[])
     
     useEffect(() => {
         getCurrentGeoLocation(setLatLng);

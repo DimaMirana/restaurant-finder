@@ -2,8 +2,9 @@ import React, {useState,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import 'antd/dist/antd.min.css';
 import {Input,Select,Row,Col} from 'antd';
-import { getFilterKey } from '../../common/utils';
 import { setFilterRestaurant } from '../../features/restaurantSlice';
+import { getFilterKey } from '../../common/utils';
+import { Info } from '../../common/types';
 
 const { Option } = Select;
 const SerarchbarComponent = () => {
