@@ -25,7 +25,10 @@ const AllRestaurantsComponent: FC = () => {
                                     key={id}
                                     bordered={true}
                                     title={item.name}
-                                    onClick={() => onClickHandler(item)}/>
+                                    onClick={() => onClickHandler(item)}>
+                                        <p>RATINGS: {item.rating}</p>
+                                        <p>KNOWN FOR: {item.categories[0].shortName}</p>
+                                    </Card>
                             </Col>
                         ))}
                 </Row>
