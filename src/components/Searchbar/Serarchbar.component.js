@@ -4,7 +4,6 @@ import 'antd/dist/antd.min.css';
 import {Input,Select,Row,Col} from 'antd';
 import { setFilterRestaurant } from '../../features/restaurantSlice';
 import { getFilterKey } from '../../common/utils';
-import { Info } from '../../common/types';
 
 const { Option } = Select;
 const SerarchbarComponent = () => {
@@ -38,7 +37,7 @@ const SerarchbarComponent = () => {
     }, [dispatch,searchValue,searchCategory])
     
     return <div className="site-input-group-wrapper">
-        <Input.Group size="large" onChange={() =>console.log('filtering')}>
+        <Input.Group size="large">
             <Row gutter={8} style={{width:"100%", margin: 0, padding: 0 }}>
                 <Col span={10} style={{ width: "inherit", margin: 0, padding: 0 }}>
                     <Select

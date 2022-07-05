@@ -1,16 +1,16 @@
-import React, {  Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {  Fragment, FC } from 'react';
 import 'antd/dist/antd.min.css';
 import { Card, Col, Row } from 'antd';
 import { setSlectedRestaurant } from '../../features/restaurantSlice';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { state } from '../../common/types';
 
-const AllRestaurantsComponent = () => {
-    const restaurants = useSelector(state => state.restaurants);
-    console.log('Restaurants',restaurants);
+const AllRestaurantsComponent: FC = () => {
+    const restaurants: state = useAppSelector(state => state.restaurants);
     
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     
-    const onClickHandler = (value) => {
+    const onClickHandler: Function = (value:any) => {
         dispatch(setSlectedRestaurant(value));
     }
     

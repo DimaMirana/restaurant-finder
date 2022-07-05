@@ -1,23 +1,25 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React,{FC} from 'react';
 import "antd/dist/antd.min.css";
 import { Layout } from "antd";
-
-import { setSlectedRestaurant } from '../../features/restaurantSlice';
 import ButtonComponent from '../Button/Button.component';
 
+import { setSlectedRestaurant } from '../../features/restaurantSlice';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { Info } from '../../common/types';
 
-const HeaderComponent = () => {
+
+const HeaderComponent: FC = () => {
     const { Header } = Layout;
     
-    const items = useSelector(state => state.restaurants.restaurantData);
-    const selectedRestaurant = useSelector(state => state.restaurants.selectedRestaurant);
-    const dispatch = useDispatch();
-    const selectRandomRestaurant = () => {
-        const randomSelect = items[Math.floor((Math.random() * items.length))]
+    const items: Array<Info> = useAppSelector(state => state.restaurants.restaurantData);
+    const selectedRestaurant: any = useAppSelector(state => state.restaurants.selectedRestaurant);
+    const dispatch = useAppDispatch();
+    
+    const selectRandomRestaurant: Function = () => {
+        const randomSelect: Info = items[Math.floor((Math.random() * items.length))]
         dispatch(setSlectedRestaurant(randomSelect));
     }
-    const locateAllRestaurant = () => {
+    const locateAllRestaurant: Function = () => {
         dispatch(setSlectedRestaurant(null));
     }
     return <Header 

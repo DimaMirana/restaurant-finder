@@ -1,4 +1,4 @@
-import React,{ useEffect, useState, FC} from 'react';
+import React,{ useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRestaurants, setCenter, setSlectedRestaurant } from '../../features/restaurantSlice';
 import { getCurrentGeoLocation } from '../../common/utils';

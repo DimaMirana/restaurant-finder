@@ -26,9 +26,9 @@ const MapPage = () => {
     const restaurants = useSelector(state => state.restaurants.filteredRestaurants);
     const center = useSelector(state => state.restaurants.center);
     const selectedRestaurant = useSelector(state => state.restaurants.selectedRestaurant);
-
-    if (loadError) return "Error loading maps";
-    if (!isLoaded) return "Loading Maps";
+    
+    if(loadError) return "Error Loading Map"
+    if (!isLoaded) return "Loading Map"
 
     return <div className={StyleObject.main}>
         <GoogleMap mapContainerStyle={mapContainerStyle} zoom={12} center={center}>
