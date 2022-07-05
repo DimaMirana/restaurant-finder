@@ -10,7 +10,7 @@ const initialState: state = {
     error: '',
     selectedRestaurant:null,
     filteredRestaurants: [],
-    center:{lat:23.8125056,lng:90.3643136},
+    center:{lat:0,lng:0},
 }
 
 
@@ -18,8 +18,7 @@ const initialState: state = {
 export const fetchRestaurants = createAsyncThunk('GET_RESTAURANT_DATA', async (latLng: latLngProps) => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore/?"
     const params = {
-        ll: `${latLng.lat === 0 ? 23.8125056 : latLng.lat},${latLng.lng === 0 ? 90.3643136 : latLng.lng}`,
-        // ll:'23.8125056, 90.3643136',
+        ll: `${latLng.lat === 0 ? 23.7925 : latLng.lat},${latLng.lng === 0 ? 90.4078 : latLng.lng}`,
         venuePhotos: 1,
         section: "food",
         client_id: "YZQZP1Q2HEJWMD5ZVBMIQD3VSZC1W4BQCCQTVFEPJWNHL0RK",
